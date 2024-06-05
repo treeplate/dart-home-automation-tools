@@ -24,7 +24,7 @@ class PacketBuffer {
     return _length - _cursor;
   }
 
-  /// Marks all bytes as unread.
+  /// Marks all bytes after the last checkpoint as unread.
   void rewind() {
     _cursor = _start;
   }
@@ -81,8 +81,7 @@ class PacketBuffer {
         packetOffset = _cursor;
       }
       _cursor += length;
-      return bytes.buffer
-          .asUint8List(bytes.offsetInBytes + packetOffset, length);
+      return bytes.buffer.asUint8List(bytes.offsetInBytes + packetOffset, length);
     }
     throw StateError('Unreachable.');
   }
