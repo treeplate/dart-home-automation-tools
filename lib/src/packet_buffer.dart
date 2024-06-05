@@ -15,24 +15,12 @@ class PacketBuffer {
   void add(Uint8List data) {
     _buffer.add(data);
     _length += data.length;
-    assert(
-      _buffer.fold<int>(
-            0,
-            (int current, Uint8List next) => current + next.length,
-          ) ==
-          _length,
-    );
+    assert(_buffer.fold<int>(0, (int current, Uint8List next) => current + next.length) == _length);
   }
 
   /// Returns the number of unread bytes.
   int get available {
-    assert(
-      _buffer.fold<int>(
-            0,
-            (int current, Uint8List next) => current + next.length,
-          ) ==
-          _length,
-    );
+    assert(_buffer.fold<int>(0, (int current, Uint8List next) => current + next.length) == _length);
     return _length - _cursor;
   }
 
