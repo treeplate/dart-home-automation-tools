@@ -93,14 +93,7 @@ class PacketBuffer {
     int index = 0;
     for (Uint8List packet in _buffer) {
       if (_start > 0) {
-        bytes.setRange(
-          index,
-          index + (packet.length - _start),
-          packet.buffer.asUint8List(
-            packet.offsetInBytes + _start,
-            packet.length - _start,
-          ),
-        );
+        bytes.setRange(index, index + (packet.length - _start), packet.buffer.asUint8List(packet.offsetInBytes + _start, packet.length - _start));
         index += packet.length - _start;
         _start = 0;
       } else {
